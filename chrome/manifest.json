@@ -1,0 +1,36 @@
+{
+	"name": "Amazon Results List Manager",
+	"version": "1.0",
+	"description": "Extension used to manage an amazon result list with the possibility to remove products from the current view and load more products without change page",
+	"manifest_version": 2,
+	
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.amazon.it/*"
+			],
+			"css": [
+				"css/amzList.css"
+			],
+			"js": [
+				"js/jquery-3.4.1.min.js",
+				"js/content.js"
+			]
+		}
+	],
+	
+	"web_accessible_resources": ["img/remove.png"],
+	
+	"browser_action": {
+		"default_icon": {
+			"16": "img/img16.png",
+			"32": "img/img32.png",
+			"48": "img/img48.png",
+			"128": "img/img128.png"
+		}
+	},
+	
+	"background": {
+		"scripts": ["js/background.js"]
+	}
+}
