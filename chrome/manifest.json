@@ -4,6 +4,16 @@
 	"description": "Extension used to manage an amazon result list with the possibility to remove products from the current view and load more products without change page",
 	"manifest_version": 2,
 	
+	"browser_action": {
+		"default_icon": {
+			"16": "img/img16.png",
+			"32": "img/img32.png",
+			"48": "img/img48.png",
+			"128": "img/img128.png"
+		},
+		"default_popup": "popup.html"
+	},
+	
 	"content_scripts": [
 		{
 			"matches": [
@@ -20,15 +30,6 @@
 	],
 	
 	"web_accessible_resources": ["img/remove.png"],
-	
-	"browser_action": {
-		"default_icon": {
-			"16": "img/img16.png",
-			"32": "img/img32.png",
-			"48": "img/img48.png",
-			"128": "img/img128.png"
-		}
-	},
 	
 	"background": {
 		"scripts": ["js/background.js"]
