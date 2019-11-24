@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(
 		if( request.message === "clicked_browser_action" ) {
 			if( !loaded ) {
 				$('.s-result-item').each( function() {
-					$(this).find('.s-include-content-margin').append('<div class="rmRow"></div>');
+					$(this).append('<div class="rmRow"></div>');
 				});
 				
 				$('.rmRow').on("click", function() {
@@ -42,7 +42,7 @@ function getNextResults() {
 			nextPage = $(data);
 			
 			nextPage.find('.s-result-item').each(function() {
-				$(this).find('.s-include-content-margin').append('<div class="rmRow"></div>');
+				$(this).append('<div class="rmRow"></div>');
 				$('.s-result-list').append($(this));
 			});
 			
