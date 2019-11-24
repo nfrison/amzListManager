@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 8px 0;
+}
+
+#actionList {
+	padding: 0;
+}
+
+#actionList li {
+	list-style: none;
+	cursor: pointer;
+}
+
+#actionList li:hover {
+	background-color: #c45500;
+	color: white;
+}

@@ -5,7 +5,7 @@ var removedProducts = [];
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		if( request.message === "clicked_browser_action" ) {
+		if( request.type === "clicked_browser_action" ) {
 			if( !loaded ) {
 				removedProducts = JSON.parse( window.localStorage.getItem('removedProducts') );
 				if( removedProducts == null ) {
