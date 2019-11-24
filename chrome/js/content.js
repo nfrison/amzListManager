@@ -16,25 +16,25 @@ if( window.localStorage.getItem("active") != null ) {
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		if( request.type === "activate" ) {
-			if( window.localStorage.getItem("active") == null  ) {
-				removedProducts = [];
-				window.localStorage.setItem("removedProducts", JSON.stringify(removedProducts) );
-				
-				init();
-				
-				window.localStorage.setItem("active",true);
-			} else {
-				alert("Amazon Results List Manager already activated");
-			}
-		} else if( request.type === "reset" ) {
-			if( window.localStorage.getItem("active") != null ) {
-				removedProducts = [];
-				window.localStorage.setItem("removedProducts", JSON.stringify(removedProducts) );
-				alert("Removed products resetted.\nPlease reload your page for these changes to take effect");
-			} else {
-				alert("Amazon Results List Manager not activated");
-			}
+		switch( request.type ) {
+			case "activate":
+				if( window.localStorage.getItem("active") == null  ) {
+					removedProducts = [];
+					window.localStorage.setItem("removedProducts", JSON.stringify(removedProducts) );
+					
+					init();
+					
+					window.localStorage.setItem("active",true);
+				} else {
+					alert("Amazon Results List Manager already activated");
+				}
+				break;
+			case "reset":
+				reset();
+				break;
+			case "deactivate":
+				deactivate();
+				break;
 		}
 	}
 );
@@ -91,3 +91,25 @@ function getNextResults() {
 		}
 	});
 }
+
+function reset() {
+	if( window.localStorage.getItem("active") != null ) {
+		removedProducts = [];
+		window.localStorage.setItem("removedProducts", JSON.stringify(removedProducts) );
+		alert("Removed products resetted.\nPlease reload your page for these changes to take effect");
+	} else {
+		alert("Amazon Results List Manager not activated");
+	}
+}
+
+function deactivate() {
+	if( window.localStorage.getItem("active") != null ) {
+		window.localStorage.removeItem("removedProducts");
+		window.localStorage.removeItem("active");
+		alert("Amazon Results List Manager deactivated.\nPlease reload your page for these changes to take effect");
+	} else {
+		alert("Amazon Results List Manager already not activated");
+	}
+}
+
+
