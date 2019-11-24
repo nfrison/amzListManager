@@ -1,17 +1,30 @@
 // content.js
 var pagination;
 var loaded = false;
+var removedProducts = [];
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		if( request.message === "clicked_browser_action" ) {
 			if( !loaded ) {
+				removedProducts = JSON.parse( window.localStorage.getItem('removedProducts') );
+				if( removedProducts == null ) {
+					removedProducts = [];
+				}
+				
 				$('.s-result-item').each( function() {
+					if( removedProducts.indexOf( $(this).attr("data-asin") ) != -1 ) {
+						$(this).remove();
+					}
 					$(this).find('.s-include-content-margin').append('<div class="rmRow"></div>');
 				});
 				
 				$('.rmRow').on("click", function() {
+					removedProducts.push( $(this).parents('.s-result-item').attr("data-asin") );
+					window.localStorage.setItem('removedProducts', JSON.stringify(removedProducts));
 					$(this).parents('.s-result-item').remove();
+					console.log( removedProducts );
+					console.log( JSON.parse( window.localStorage.getItem('removedProducts') ) );
 				});
 				
 				
