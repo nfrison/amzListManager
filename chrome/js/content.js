@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(
 					if( removedProducts.indexOf( $(this).attr("data-asin") ) != -1 ) {
 						$(this).remove();
 					}
-					$(this).find('.s-include-content-margin').append('<div class="rmRow"></div>');
+					$(this).append('<div class="rmRow"></div>');
 				});
 				
 				$('.rmRow').on("click", function() {
@@ -55,7 +55,7 @@ function getNextResults() {
 			nextPage = $(data);
 			
 			nextPage.find('.s-result-item').each(function() {
-				$(this).find('.s-include-content-margin').append('<div class="rmRow"></div>');
+				$(this).append('<div class="rmRow"></div>');
 				$('.s-result-list').append($(this));
 			});
 			
